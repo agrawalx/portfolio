@@ -33,7 +33,7 @@ export const aboutParagraphs = [
 ];
 
 export const termScript: TermLine[] = [
-  { p: "whoami", o: "Yash Agrawal · systems & backend engineer · IIT Roorkee" },
+  { p: "whoami", o: "Yash Agrawal · pre-final year student at IIT Roorkee" },
   { p: "cat thesis.txt", o: "builds distributed & high-performance systems in Rust and C++. learns by building from scratch; trusts p99 over averages." },
   { p: "./status --now", o: "currently building: EdgeProxy · FluxDB · Ethereum client dashboards" },
 ];
