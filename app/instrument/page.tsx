@@ -96,6 +96,7 @@ export default function Instrument() {
                   <span className={s.statusChip} style={{ color, border: `1px solid ${border}` }}>
                     <span className={s.statusBlip} style={{ background: color }} />{p.status}
                   </span>
+                  <span className={s.hint} aria-hidden>{isOpen ? "click to collapse" : "click to expand"}</span>
                   <span className={s.chevron} aria-hidden>{isOpen ? "−" : "+"}</span>
                 </button>
               </h3>

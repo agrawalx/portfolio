@@ -84,6 +84,7 @@ export default function Datasheet() {
                     <span className={s.projNumInline}>2.{i + 1}</span>
                     <span className={s.projTitleText}>{p.title}</span>
                     <span className={s.statusChip} style={{ color }}>{p.status}</span>
+                    <span className={s.hint} aria-hidden>{isOpen ? "click to collapse" : "click to expand"}</span>
                     <span className={s.chevron} aria-hidden>{isOpen ? "−" : "+"}</span>
                   </button>
                 </h3>
