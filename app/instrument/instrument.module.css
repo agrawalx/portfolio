@@ -55,15 +55,26 @@
   border:1px solid #4a3a1f; border-radius:20px; padding:2px 7px; }
 .mDetail{ font-family:var(--font-body),sans-serif; font-size:13.5px; line-height:1.5; color:#6b7370; margin:0; max-width:380px; }
 
-.proj{ display:grid; grid-template-columns:minmax(0,220px) 1fr; gap:clamp(12px,2.5vw,48px);
-  padding:28px 0; border-top:1px solid #1a1e20; }
-.projNum{ font-size:12px; color:#5a625f; margin-bottom:12px; }
+.proj{ padding:22px 0; border-top:1px solid #1a1e20; }
 .statusChip{ display:inline-flex; align-items:center; gap:6px; font-size:10px; letter-spacing:.05em;
   text-transform:uppercase; border-radius:4px; padding:3px 8px; }
 .statusBlip{ width:5px; height:5px; border-radius:50%; }
-.projBody{ min-width:0; }
-.projTitle{ font-family:var(--font-display),sans-serif; font-weight:600; font-size:clamp(22px,3vw,30px);
-  letter-spacing:-.02em; margin:0 0 12px; color:#F1F3F1; }
+
+/* collapsible header */
+.projHeading{ margin:0; }
+.projToggle{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; width:100%;
+  background:none; border:0; padding:0; margin:0; cursor:pointer; text-align:left; color:inherit; font:inherit; }
+.projNumInline{ font-size:12px; color:#5a625f; }
+.projTitleText{ font-family:var(--font-display),sans-serif; font-weight:600; font-size:clamp(22px,3vw,30px);
+  letter-spacing:-.02em; color:#F1F3F1; transition:color .18s ease; }
+.projToggle:hover .projTitleText{ color:#fff; }
+.chevron{ margin-left:auto; align-self:center; font-family:var(--font-mono),monospace; font-size:22px;
+  line-height:1; color:var(--amber); transition:opacity .18s ease; }
+.projToggle:hover .chevron{ opacity:.7; }
+.panel{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s ease; }
+.panelOpen{ grid-template-rows:1fr; }
+.panelInner{ overflow:hidden; }
+.panelPad{ padding-top:16px; }
 .projDesc{ font-family:var(--font-body),sans-serif; font-size:15px; line-height:1.6; color:#9aa39f;
   max-width:780px; margin:0 0 16px; text-wrap:pretty; }
 .metricRow{ display:flex; flex-wrap:wrap; gap:24px; margin:0 0 16px; padding:14px 0;
@@ -128,5 +139,5 @@
 @keyframes scan{ 0%,100%{opacity:.35;} 50%{opacity:1;} }
 
 @media(max-width:759px){
-  .arcGrid,.mentionGrid,.proj,.buildRow{ grid-template-columns:1fr; }
+  .arcGrid,.mentionGrid,.buildRow{ grid-template-columns:1fr; }
 }

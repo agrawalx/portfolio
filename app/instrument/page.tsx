@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import s from "./instrument.module.css";
 import { setupReveal, setupArc, runTerminal } from "@/lib/animations";
 import {
@@ -15,6 +15,8 @@ const DIM = "#7d857f";
 export default function Instrument() {
   const root = useRef<HTMLDivElement>(null);
   const termLines = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState<boolean[]>(() => projects.map(() => false));
+  const toggle = (i: number) => setOpen((prev) => prev.map((v, j) => (j === i ? !v : v)));
 
   useEffect(() => {
     if (!root.current) return;
@@ -83,33 +85,42 @@ export default function Instrument() {
         {projects.map((p, i) => {
           const color = p.tone === "building" ? AMBER : TEAL;
           const border = p.tone === "building" ? "#4a3a1f" : "#1f3d39";
+          const isOpen = open[i];
           return (
             <article key={p.title} data-reveal className={s.proj}>
-              <div>
-                <div className={s.projNum}>{String(i + 1).padStart(2, "0")}</div>
-                <div className={s.statusChip} style={{ color, border: `1px solid ${border}` }}>
-                  <span className={s.statusBlip} style={{ background: color }} />{p.status}
-                </div>
-              </div>
-              <div className={s.projBody}>
-                <h3 className={s.projTitle}>{p.title}</h3>
-                <p className={s.projDesc}>{p.desc}</p>
-                {p.metrics.length > 0 && (
-                  <div className={s.metricRow}>
-                    {p.metrics.map((mt, j) => (
-                      <div key={j}>
-                        <div className={s.metricV}>{mt.v}</div>
-                        <div className={s.metricL}>{mt.l}</div>
+              <h3 className={s.projHeading}>
+                <button type="button" className={s.projToggle} aria-expanded={isOpen}
+                  aria-controls={`proj-i-${i}`} onClick={() => toggle(i)}>
+                  <span className={s.projNumInline}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className={s.projTitleText}>{p.title}</span>
+                  <span className={s.statusChip} style={{ color, border: `1px solid ${border}` }}>
+                    <span className={s.statusBlip} style={{ background: color }} />{p.status}
+                  </span>
+                  <span className={s.chevron} aria-hidden>{isOpen ? "−" : "+"}</span>
+                </button>
+              </h3>
+              <div id={`proj-i-${i}`} className={isOpen ? `${s.panel} ${s.panelOpen}` : s.panel}>
+                <div className={s.panelInner}>
+                  <div className={s.panelPad} inert={!isOpen}>
+                    <p className={s.projDesc}>{p.desc}</p>
+                    {p.metrics.length > 0 && (
+                      <div className={s.metricRow}>
+                        {p.metrics.map((mt, j) => (
+                          <div key={j}>
+                            <div className={s.metricV}>{mt.v}</div>
+                            <div className={s.metricL}>{mt.l}</div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    )}
+                    <div className={s.projStack}>{p.stack}</div>
+                    {p.href ? (
+                      <a className={s.projLink} href={p.href} target="_blank" rel="noopener noreferrer">{p.linkLabel} →</a>
+                    ) : (
+                      <span className={s.noLink}>repo not public yet</span>
+                    )}
                   </div>
-                )}
-                <div className={s.projStack}>{p.stack}</div>
-                {p.href ? (
-                  <a className={s.projLink} href={p.href} target="_blank" rel="noopener noreferrer">{p.linkLabel} →</a>
-                ) : (
-                  <span className={s.noLink}>repo not public yet</span>
-                )}
+                </div>
               </div>
             </article>
           );
