@@ -23,18 +23,18 @@ const body = Hanken_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yash-agrawal.dev"),
-  title: "Yash Agrawal — systems & backend engineer",
+  title: "Yash Agrawal — pre-final year student at IIT Roorkee",
   description:
     "Yash Agrawal — a pre-final year student at IIT Roorkee who builds distributed and high-performance systems in Rust and C++. FluxDB, MatchBench, EdgeProxy and more.",
   openGraph: {
     type: "website",
-    title: "Yash Agrawal — systems & backend engineer",
+    title: "Yash Agrawal — pre-final year student at IIT Roorkee",
     description: "Builds distributed and high-performance systems in Rust and C++. Trusts p99 over averages.",
     images: ["/assets/arbitrum-openhouse.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yash Agrawal — systems & backend engineer",
+    title: "Yash Agrawal — pre-final year student at IIT Roorkee",
     description: "Builds distributed and high-performance systems in Rust and C++. Trusts p99 over averages.",
     images: ["/assets/arbitrum-openhouse.jpg"],
   },
