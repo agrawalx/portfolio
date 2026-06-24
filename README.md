@@ -1,13 +1,13 @@
 # Yash Agrawal — portfolio
 
-Personal portfolio built with **Next.js 16** (App Router, TypeScript). Two design
-directions share one typed content module:
+Personal portfolio built with **Next.js 16** (App Router, TypeScript).
 
-- `/instrument` — dark terminal / oscilloscope, with a typed-out terminal hero and a
-  scroll-driven career timeline.
-- `/datasheet` — light engineering spec-sheet, with boxed sections, a revision
-  history, and an ordering table.
-- `/` — landing chooser between the two.
+- `/` — the **Instrument** direction: a dark terminal / oscilloscope, with a typed-out
+  terminal hero and a scroll-driven career timeline.
+
+A second **Datasheet** direction (light engineering spec-sheet) is kept in
+`app/_datasheet/` — preserved but hidden (the leading underscore makes it a private,
+un-routed segment). Rename it back to `app/datasheet/` to re-enable that route.
 
 ## Stack
 
@@ -36,9 +36,9 @@ npm start
 ```
 app/
   layout.tsx              root layout, fonts, metadata
-  page.tsx                landing chooser
+  page.tsx                root — renders the Instrument page
   instrument/page.tsx     dark terminal direction
-  datasheet/page.tsx      light spec-sheet direction
+  _datasheet/page.tsx     light spec-sheet direction (hidden / not routed)
   *.module.css            scoped styles per route
 lib/
   data.ts                 all content (projects, builds, wins, links, …)
